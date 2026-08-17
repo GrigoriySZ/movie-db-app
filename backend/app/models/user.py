@@ -15,5 +15,5 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now(timezone.utc), nullable=False)
 
-    watchlist: Mapped['Watchlist'] = relationship('Watchlist', back_populates='user', cascade='all, delete-orphan', uselist=False)
+    watchlist: Mapped[list['Watchlist']] = relationship('Watchlist', back_populates='user', cascade='all, delete-orphan')
     reviews: Mapped[list['Review']] = relationship('Review', back_populates='user', cascade='all, delete-orphan')
